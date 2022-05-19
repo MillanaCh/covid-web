@@ -14,7 +14,7 @@ function App() {
   let dispatch = useDispatch();
   const fetchData = async () => {
     const response = await fetch(
-      `https://api.covid19api.com/country/${select}/status/confirmed/live`
+      `https://api.covid19api.com/live/country/${select}/status/confirmed`
     );
     const data = await response.json();
     let dataSlice = [...data.splice(data.length - 5, 5)];
@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     fetchData();
   }, [select]);
-  // console.log(data);
+  console.log(data);
 
   const fetchCountries = async () => {
     const response = await fetch(`https://api.covid19api.com/countries`);

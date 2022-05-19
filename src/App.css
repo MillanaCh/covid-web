@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -6,4 +6,38 @@
 .App {
   height: 100vh;
   background-color: #edf7ff;
+}
+.select {
+  width: 260px;
+  height: 40px;
+  padding: 10px;
+  margin: 50px 100px 30px 100px;
+  border: none;
+  font-size: 16px;
+}
+.container {
+  margin-left: 100px;
+}
+.each-container {
+  width: 70%;
+  height: 110px;
+  padding: 20px;
+  margin-bottom: 13px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.right-cont {
+  display: flex;
+}
+.right-cont p {
+  margin: 10px;
+}
+.right-cont span {
+  width: 70px;
+  background-color: #edf7ff;
+  padding: 4px;
+  border-radius: 7px;
 }
