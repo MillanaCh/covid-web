@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "./store/actions";
 import { act } from "@testing-library/react";
+import LiveResult from "./component/LiveResult";
 
 function App() {
   const [input, setInput] = useState();
@@ -47,7 +48,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <header>
         <select
           value={select}
           onChange={(e) => handleChange(e)}
@@ -57,8 +58,11 @@ function App() {
             <option key={el.Country}>{el.Country}</option>
           ))}
         </select>
+      </header>
+      <div className="box-container">
+        <Main />
+        <LiveResult/>
       </div>
-      <Main />
     </div>
   );
 }
