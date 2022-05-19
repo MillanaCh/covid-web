@@ -1,11 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "./reduxSlice";
-import dataSlice from "./reduxData";
+import reducers from "./reducers";
 const store = configureStore({
-  reducer: {
-    country: userSlice.reducer,
-    data: dataSlice.reducer,
-  },
+  reducer: { reducers },
 });
 console.log(store);
 export default store;
