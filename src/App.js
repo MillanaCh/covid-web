@@ -1,9 +1,8 @@
 import "./App.css";
 import Main from "./component/Main";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./store/actions";
-import { act } from "@testing-library/react";
 import LiveResult from "./component/LiveResult";
 
 function App() {
@@ -12,6 +11,8 @@ function App() {
   const [data, setData] = useState([]);
   const [countryData, setCountryData] = useState([]);
 
+  // let selected = useSelector((state) => console.log(state, "state"));
+
   let dispatch = useDispatch();
   const fetchData = async () => {
     const response = await fetch(
@@ -19,6 +20,7 @@ function App() {
     );
     const data = await response.json();
     let dataSlice = [...data.splice(data.length - 5, 5)];
+    // console.log(data);
     setData(dataSlice);
     dispatch({ type: actions.DATA, payload: dataSlice });
     return data;
@@ -27,12 +29,11 @@ function App() {
   useEffect(() => {
     fetchData();
   }, [select]);
-  console.log(data);
 
   const fetchCountries = async () => {
     const response = await fetch(`https://api.covid19api.com/countries`);
     const data = await response.json();
-    let countrySlice = [...data.slice(200)];
+    let countrySlice = [...data.slice(120, 180)];
     setCountryData(countrySlice);
     return data;
   };
@@ -46,6 +47,10 @@ function App() {
     localStorage.setItem("selected", JSON.stringify(e.target.value));
   };
 
+  useEffect(() => {
+    setSelect(JSON.parse(localStorage.getItem("selected")));
+  }, [select]);
+
   return (
     <div className="App">
       <header>
@@ -53,6 +58,7 @@ function App() {
           value={select}
           onChange={(e) => handleChange(e)}
           className="select"
+          defaultValue="Kyrgyzstan"
         >
           {countryData.map((el) => (
             <option key={el.Country}>{el.Country}</option>
@@ -61,7 +67,7 @@ function App() {
       </header>
       <div className="box-container">
         <Main />
-        <LiveResult/>
+        <LiveResult />
       </div>
     </div>
   );

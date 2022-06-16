@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../store/actions";
 export default function Main() {
   const data = useSelector((state) => state.reducers[0]);
+  console.log(data);
   return (
     <div className="container">
       {data?.map((el, index) => (
